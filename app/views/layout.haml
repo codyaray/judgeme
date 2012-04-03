@@ -1,0 +1,18 @@
+!!! 5
+%html
+  %head
+    %title= "Sherlock"
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+  %body
+    %header
+      %nav
+        %ul
+          %li= "Menu Item"
+
+    %article
+      %h2= "Article Title"
+      =yield
+
+  %footer
+    %p Copyright (C) 2012 BrightTag
