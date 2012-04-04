@@ -1,0 +1,9 @@
+# vote = (rating, artifactId) ->
+#   vote_url = "/users/0/votes/" + artifactId + "+" + rating
+#   console.log(vote_url)
+#   $.get
+#     url: vote_url,
+#     success: (output_string) ->
+#       votes = output_string.split("\n").map((str) -> str.split(" ").pop())
+#       $("#up").append votes[0]
+#       $("#dn").append votes[1]

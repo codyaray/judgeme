@@ -1,0 +1,7 @@
+%div.thumbs
+  = image_tag 'thumbs_up.png', :class => "thumb", :id => "up"
+  = image_tag 'thumbs_dn.png', :class => "thumb", :id => "dn"
+
+:javascript
+  $("#up").click(vote("LIKE", "#{@artifact.id}"))
+  $("#dn").click(vote("DISLIKE", "#{@artifact.id}"))

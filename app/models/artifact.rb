@@ -1,8 +1,7 @@
 class Artifact
   include DataMapper::Resource
 
-  property :id,     Serial
-  property :symbol, String
+  property :id, String, :key => true
 
   has n, :votes
   belongs_to :account

@@ -1,3 +1,5 @@
-%div.thumbs
-  = image_tag 'thumbs_up.png', :class => "thumb"
-  = image_tag 'thumbs_dn.png', :class => "thumb"
+%h1 Artifacts
+
+%ul
+- @artifacts.each do |artifact|
+  %li= link_to artifact.id, "/artifacts/#{artifact.id}"
