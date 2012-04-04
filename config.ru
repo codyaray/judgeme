@@ -2,10 +2,10 @@ RACK_ENV = ENV["RACK_ENV"] ||= "development" unless defined? RACK_ENV
 
 require File.dirname(__FILE__) + '/config/boot.rb'
 
-FileUtils.mkdir_p 'log' unless File.exists?('log')
-log = File.new("log/sinatra.log", "a")
-$stdout.reopen(log)
-$stderr.reopen(log)
+# FileUtils.mkdir_p 'log' unless File.exists?('log')
+# log = File.new("log/sinatra.log", "a")
+# $stdout.reopen(log)
+# $stderr.reopen(log)
 $stdout.sync = true
 $stderr.sync = true
 

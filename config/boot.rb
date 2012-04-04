@@ -8,7 +8,7 @@ ROOT_DIR = File.dirname(__FILE__) + '/../' unless defined? ROOT_DIR
 # Helper method for file references.
 # root_path("config", "settings.yml")
 def root_path(*args)
-  File.join(ROOT_DIR, *args)
+  File.expand_path(File.join(ROOT_DIR, *args))
 end
 
 # Returns the full path to the public folder along with any given additions
