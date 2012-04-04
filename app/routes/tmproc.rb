@@ -11,6 +11,6 @@ app do
     return "Sorry, we don't have an artifact '#{symbol}'" if artifact.nil?
     user.votes.create(:value => rating.downcase.to_sym, :artifact => artifact)
 
-    "Thanks for your message! -C"
+    "Likes: #{artifact.votes.like.count}\nDislikes: #{artifact.votes.dislike.count}"
   end
 end
