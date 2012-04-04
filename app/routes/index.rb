@@ -1,6 +1,6 @@
 app do
   get '/' do
-    @artifacts = Artifact.all
-    haml :index
+    @accounts = Account.all
+    haml :'accounts/index'
   end
 end

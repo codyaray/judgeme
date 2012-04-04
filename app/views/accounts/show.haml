@@ -1,0 +1,5 @@
+%h1= "#{@account.name.capitalize}'s Artifacts"
+
+%ul
+- @artifacts.each do |artifact|
+  %li= link_to artifact.id, "/artifacts/#{artifact.id}"
