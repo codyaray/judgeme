@@ -2,10 +2,10 @@
 
 module RenderHelpers
   # Override HAML renderer to escape HTML by default
-  def haml(template_path, options = {}, locals = {})
-    options[:escape_html] = true unless options.include?(:escape_html)
-    haml_template(template_path, options, locals)
-  end
+  # def haml(template_path, options = {}, locals = {})
+  #   options[:escape_html] = true unless options.include?(:escape_html)
+  #   haml_template(template_path, options, locals)
+  # end
 
   # Override render helper to call haml_template
   # def render(*args)

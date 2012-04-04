@@ -2,17 +2,12 @@
 %html
   %head
     %title= "Sherlock"
-    = stylesheet_link_tag 'application'
-    = javascript_include_tag 'application'
-  %body
-    %header
-      %nav
-        %ul
-          %li= "Menu Item"
+    = partial 'layouts/stylesheets'
+    = partial 'layouts/javascripts'
 
-    %article
-      %h2= "Article Title"
-      =yield
-
-  %footer
-    %p Copyright (C) 2012 BrightTag
+  %body.container
+    = partial 'layouts/header'
+    %section
+      = partial 'layouts/flash'
+      = yield
+    = partial 'layouts/footer'

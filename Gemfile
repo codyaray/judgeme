@@ -2,10 +2,9 @@ source 'http://rubygems.org'
 
 # Base requirements
 gem 'sinatra'
-gem 'sinatra-index'
-# gem 'rack-flash'
 
 # Component requirements
+gem 'coffee-script'
 gem 'haml'
 gem 'unicorn'
 

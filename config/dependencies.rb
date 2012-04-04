@@ -11,10 +11,6 @@ class JudgeMe < Sinatra::Application
   use Rack::Session::Cookie
   # use Rack::Flash
 
-  # Register sinatra extensions
-  register Sinatra::Index
-  use_static_index 'index.html'
-
   # Requires the initializer modules which configure specific components
   Dir[File.dirname(__FILE__) + '/initializers/*.rb'].each do |file|
     # Each initializer file contains a module called 'XxxxInitializer' (i.e HassleInitializer)

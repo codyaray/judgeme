@@ -17,7 +17,7 @@ module TagHelpers
   # Creates an html tag with the given name and options
   # tag(:br, :style => 'clear:both')
   # tag(:p, :content => "hello", :class => 'large')
-  def tag(name, options={})
+  def tag(name, options = {})
     content = options.delete(:content)
     identity_tag_attributes.each { |attr| options[attr] = attr.to_s if options[attr]  }
     html_attrs = options.collect { |a, v| v.empty? ? nil : "#{a}=\"#{v}\"" }.compact.join(" ")

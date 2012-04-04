@@ -18,13 +18,13 @@ module AssetTagHelpers
   # Returns a stylesheet link tag for the sources specified as arguments
   # stylesheet_link_tag 'style', 'application', 'layout'
   def stylesheet_link_tag(*sources)
-    options = sources.last.is_a?(Hash) ? sources.last : {}
-    sources.collect { |sheet| stylesheet_tag(sheet, options) }.join("\n")
+    opts = sources.last.is_a?(Hash) ? sources.pop : {}
+    sources.collect { |sheet| stylesheet_tag(sheet, opts) }.join("\n")
   end
 
   # javascript_include_tag 'application', 'special'
   def javascript_include_tag(*sources)
-    options = sources.last.is_a?(Hash) ? sources.last : {}
+    options = sources.last.is_a?(Hash) ? sources.pop : {}
     sources.collect { |script| javascript_tag(script, options) }.join("\n")
   end
 
