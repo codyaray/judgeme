@@ -77,6 +77,12 @@ Note, you need to use your own domain, unless you want to send users to our serv
 To quickly get some data in the database, we've provided a rake task
 that'll add some auto-generated seed data for you.
 
+But before we seed, let's migrate first.
+
+    rake db:migrate
+    
+Now we can seed the database.
+
     rake db:seed
 
 Regular management is currently done through the console.
