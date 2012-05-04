@@ -90,8 +90,14 @@ Regular management is currently done through the console.
 To create new user:
 
     User.create(:name => "John Smith", :username => "johnny", :email => "john@smith.com", :phone => "5551234567")
+    
+To create a new account (artifacts will belong to accounts)
 
-TODO: document the Account and Artifacts objects.
+    Account.create(:name => "genre")
+    
+To create a new artifact:
+
+    Artifact.create(:id => "art004", :account_id => 1)
 
 ## Usage
 
