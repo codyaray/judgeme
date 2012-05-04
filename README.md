@@ -9,12 +9,24 @@ People or organizations can setup an _Account_ in JudgeMe to list their
 items, or _Artifacts_, for other people to like or dislike. JudgeMe
 provides two modalities for users to express their approval: web and sms.
 
+### Research Purpose
+
+JudgeMe explores the social dynamics behind user preferences through a three-step process:
+
+1. A user expresses their approval (or disapproval) for an artifact
+2. The application reveals other peoples' preferences and prompts the user to reconsider their initial preference
+3. The user can optionally change their preference
+
+JudgeMe provides support for contextual preference expression through both modalities, overlaying
+the social aggregate selection with an immediate dynamic re-evaluation prompt.
+
 ### Web Interface
 
-The web interface provides a simple display for users to click a thumbs-up
-or thumbs-down icon for a particular artifact. The images are then replaced
-by the number of users selecting each (e.g., 504 Likes, 372 Dislikes).
-There are two distinct use cases:
+The web interface provides a simple display for users to click a thumbs-up or 
+thumbs-down icon for a particular artifact. The images are then replaced by the
+number of users selecting each (e.g., 504 Likes, 372 Dislikes). After these 
+aggregate preferences are shown, a modal dialogue prompts the user to either
+"Keep It" or "Change It" (their preference). There are two distinct use cases:
 
 - POS-like device, where the artifact's page is pre-loaded on the screen
 - mobile browser, where a visitor snaps a QR code linking direct to artifact's page
@@ -26,7 +38,9 @@ with an SMS provider. For example, using TextMarks as your provider with
 keyword 'JUDGEME', a user could text 41411 with 'JUDGEME Art001 Like'
 (case-insensitive) for artifact 'Art001'. 'Dislike' is also supported.
 The user then receives back a message containing the total number of likes
-and dislikes, respectively.
+and dislikes, respectively. A narrative prompt employs the user to reconsider
+whether they would like to stay with their initial preference or change it.
+In this same context, the user may simply reply 'C' to change their preference.
 
 ## Install
 
@@ -78,26 +92,35 @@ Note, you need to use your own domain, unless you want to send users to our serv
 
 ### Setup Accounts and Artifacts
 
+The model layer consists of four objects: user, account, artifact, and vote.
+
+* An account may have one more or artifacts
+* A user may have one or more votes
+* An account may also have users, but that's not currently used anywhere.
+
 To quickly get some data in the database, we've provided a rake task
 that'll add some auto-generated seed data for you.
 
     rake db:seed
 
-Regular management is currently done through the console.
+Regular management is currently done through the console. You can use it to create the accounts and artifacts you need.
 
     rake console
 
-To create new user:
+To create a new account
 
-    User.create(:name => "John Smith", :username => "johnny", :email => "john@smith.com", :phone => "5551234567")
-    
-To create a new account (artifacts will belong to accounts)
+    >> Account.create(:name => "moma")
 
-    Account.create(:name => "genre")
-    
 To create a new artifact:
 
-    Artifact.create(:id => "art004", :account_id => 1)
+    >> Artifact.create(:id => "art001", :account_id => 1)
+
+Users will automatically be created for every user that SMS's the application. Anonymous web votes are
+recorded as the first user, having phone number "0".
+
+You can also create a new user directly:
+
+    >> User.create(:name => "John Smith", :username => "johnny", :email => "john@smith.com", :phone => "1234567890")
 
 ## Usage
 
@@ -137,8 +160,33 @@ And open it in your browser.
 
     heroku open
 
-Well, you shouldn't really see anything because you haven't setup any
-artifacts or users yet. But I trust you'll figure it out. :)
+You should see a list of all accounts created from the seed data or console during configuration above.
+
+### Console
+
+You can explore your data using the console mentioned above. Its super easy to traverse relationships, filter
+through your data, and mutate it to your heart's content.
+
+You can list all users with
+
+    >> User.all
+
+Lookup 'Johnny' by username or phone number:
+
+    >> User.first(:username => "johnny")
+    >> User.first(:phone => "1234567890")
+
+Find the id of the first item Johnny disliked
+
+    >> johnny.votes.dislike.first.artifact.id
+
+Or find how many artifacts that Johnny still likes (i.e., didn't change his mind and cancel his vote) with
+
+    >> johnny.votes.uncancelled.likes.count
+
+The same ideas go for all four objects, such as `Account.all` and `Artifact.first(:id => 'art001')`.
+
+There's many more ways to use the data in here. Explore! 
 
 ## Colophon
 
