@@ -3,6 +3,8 @@
 A simple approval application that pokes fun at the importance
 given to voting... or does it? Like or dislike as you will.
 
+A brief introduction: https://vimeo.com/41551442
+
 ## Overview
 
 People or organizations can setup an _Account_ in JudgeMe to list their
