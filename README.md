@@ -87,6 +87,10 @@ Regular management is currently done through the console.
 
     rake console
 
+To create new user:
+
+    User.create(:name => "John Smith", :username => "johnny", :email => "john@smith.com", :phone => "5551234567")
+
 TODO: document the Account and Artifacts objects.
 
 ## Usage
